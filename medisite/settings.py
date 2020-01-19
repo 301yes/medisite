@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'medisite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'medi',
+        'NAME': 'medi.sqlite3',
         'USER':'root',
         'PASSWORD':'123456',
         'HOST':'127.0.0.1',

@@ -1,0 +1,138 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>打标说明</title>
+    <!-- ================= Favicon ================== -->
+
+    <!-- Styles -->
+	<link href="{% static 'css/lib/scrollable/scrollable.min.css' %}" rel="stylesheet">
+    <link href="{% static 'fontAwesome/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/mmc-chat.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/lib/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/nixon.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lobipanel/css/lobipanel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<style>
+		a {
+		color:white;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <li class="active">
+                        <a  href="/index/"><i class="ti-home"></i> 首页 </a>
+                    </li>
+                      
+                      
+                    <li><a href="/tagging/"><i class="ti-user"></i>标注主页面</a></li>
+					<li><a href="/example1/"><i class="ti-layout-grid2-alt"></i>查看标注说明</a></li>
+					<li><a href="/check/"><i class="ti-layout-grid2-alt"></i>查看已标注文本</a></li>
+					<li><a href="/check2/"><i class="ti-layout-grid2-alt"></i>查看未标注文本</a></li>
+                    <li><a href="/logout/"><i class="ti-close"></i>登出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /# sidebar -->
+    <div class="header">
+        <div class="pull-left">
+            <div class="logo">
+                <a href="/index/">
+                    <img id="logoImg" src="{% static 'logo/logo.png'%}"  alt="Nixon" />
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>首页</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# row -->
+                <div class="main-content">
+				
+					<div class="row">
+                        <div class="col-lg-12">
+                            <div class="card alert nestable-cart">
+                                <div class="card-header">
+                                    <h2 style="font-weight:bold">打标说明</h2>
+									<h4 style="font-weight:bold">请认真阅读下述说明并下载标注规范文件仔细查看！ </h4> 
+                                </div>
+                                <div class="card-body" >
+                                    <div class="example box" data-options='{"direction": "vertical", "contentSelector": ">", "containerSelector": ">"}' style="height:500px"> 
+                                        <div >
+                                            <p style="font-size:16px"> 我们将欺诈分为诈骗话术和资产转移后如何意识到被骗两个部分。在诈骗话术阶段，我们分为联系渠道、假冒身份、虚构经营内容、索要钱款的理由四个方面讨论，对于资产转移后阶段我们主要对如何意识到被骗和用户诉求进行标注。
+											<br/><br/>针对投诉文本，用标点符号（逗号，分号，空格等）划分最小表述单元，我们可以将一个非结构化的文本切分成一个表述序列，旨在判断每一个表述单元对应的是欺诈环节中哪一个环节，对应该环节下什么具体标签。
+											<br/><br/>目前我们需要标注得到的环节共有<span style = "color:red" >六类</span>，分别是：<span style = "color:red" >联系渠道、假冒身份、虚构经营内容、索要钱款理由、如何意识到被骗、用户诉求</span>。针对每个环节，我们对其下属标签进行解释并给出例子。
+											<br/><br/>若当前句子未提及任何一个环节（联系渠道、假冒身份、虚构经营内容、索要钱款理由、如何意识到被骗、用户诉求），则环节选择无，标签选择无。
+											<br/><br/>进入标注主页面或标注修改页面后，必须将<span style = "color:red" >全部下拉框</span>进行选择才可以点击“下一条”，<span style = "color:red" >否则将无法保存数据。</span>
+											<br/><br/>若想返回上一条重新标注，可以点击“上一条”返回，请确保你要修改的标注文本全部下拉框选择完毕，点击“下一条”的同时即可保存修改。
+                                                                                        <br/><br/>环节标签（大类标签）有优先级设置，<span style = "color:red" >优先级越高的标签位于下拉框的越上方。</span>
+											<br/><br/>点击<span style = "color:red" >“下载标注规范”</span>按钮即可下载打标说明文件，查看环节及对应标签分类，点击<span style = "color:red" >“查看打标实例”</span>按钮即可查看示例页面。</p>	
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+							<button class="btn btn-primary" style="width:15%;margin:10px;float:right;"><a href="/example2/">查看打标实例</a></button>
+							<button style="width:15%;margin:10px;float:right;" id="before"  class="btn btn-primary"><a href="{% static "files/taglogistic.pdf" %}" target="_blank">下载标注规范</a></button>
+                        </div>
+                    </div>
+             
+                </div>   
+            </div>
+		</div>	
+	 </div>
+ </div>
+ <!-- /# container-fluid -->
+</div>
+<!-- /# main -->
+</div>
+<!-- /# content wrap -->
+<script src="{% static 'js/lib/jquery.min.js'%}"></script>
+<!-- jquery vendor -->
+<script src="{% static 'js/lib/jquery.nanoscroller.min.js'%}"></script>
+<!-- nano scroller -->
+<script src="{% static 'js/lib/sidebar.js'%}"></script>
+<!-- sidebar -->
+<script src="{% static 'js/lib/bootstrap.min.js'%}"></script>
+<!-- bootstrap -->
+<script src="{% static 'js/lib/mmc-common.js'%}"></script>
+<script src="{% static 'js/lib/mmc-chat.js'%}"></script>
+<script src="{% static 'js/lib/scrollable/holder.js'%}"></script><!-- scripit init-->
+<script src="{% static 'js/lib/scrollable/jquery-asScrollbar.js'%}"></script><!-- scripit init-->
+<script src="{% static 'js/lib/scrollable/jquery-asScrollable.min.js'%}"></script><!-- scripit init-->
+<script src="{% static 'js/lib/scrollable/scrollable.init.js'%}"></script><!-- scripit init-->
+<script src="{% static 'js/scripts.js'%}"></script>
+<!-- scripit init-->
+<script>
+    $(document).ready(function() {
+        $('#lobipanel-custom-control').lobiPanel({
+            reload: false,
+            close: false,
+            editTitle: false
+        });
+    });
+</script>
+</body>
+
+</html>

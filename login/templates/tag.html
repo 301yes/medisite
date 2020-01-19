@@ -1,0 +1,360 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>标注主页面</title>
+    <title>标注主页面</title>
+	
+	<!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon--> 
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon--> 
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+	
+	<!-- Styles -->
+    <link href="{% static 'css/lib/scrollable/scrollable.min.css' %}" rel="stylesheet">  <!--Themes Jquery Bar Rating-->
+    <link href="{% static 'fontAwesome/css/fontawesome-all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/mmc-chat.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/lib/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/nixon.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lobipanel/css/lobipanel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <li class="active">
+						<a  href="/index/"><i class="ti-home"></i> 首页 </a>
+                    </li>					
+					
+                      
+                      
+                    <li><a href="/tagging/"><i class="ti-user"></i> 标注主页面</a></li>
+                    <li><a href="/example1/"><i class="ti-layout-grid2-alt"></i>查看标注说明</a></li>
+					<li><a href="/check/"><i class="ti-layout-grid2-alt"></i>查看已标注文本</a></li>
+					<li><a href="/check2/"><i class="ti-layout-grid2-alt"></i>查看未标注文本</a></li>
+                    <li><a href="/logout/"><i class="ti-close"></i>登出</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+	<!-- /# sidebar -->
+
+    <div class="header">
+        <div class="pull-left">
+            <div class="logo">
+                <a href="index.html">
+                    <img id="logoImg" src="{% static 'logo/logo.png'%}"  alt="Nixon" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>标注主页面</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# row -->
+                <div class="main-content" id="maincontent">
+                    <div class="row" id="updatediv">
+                        <div class="col-lg-12">
+						{% block content %}
+                            <div class="card alert nestable-cart">
+                                <div class="card-header">
+                                    <h2  style="font-weight:bold">待标注文本</h2>
+									<p></p>
+									<p id='fatherp' style="font-size:18px"> 待标注文本序号:   <b id='textid' style="display: inline;">{{nowtext_id}}</b> </p>                          
+                                </div>
+                                <div class="card-body">
+                                    <div class="example box" data-options='{"direction": "vertical", "contentSelector": ">", "containerSelector": ">"}'> 
+                                        <div id="fraud">
+                                            <p id="fraudtext" style="font-size:18px">{{nowtext}}</p>
+											
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /# card -->
+                            </div>
+						{% endblock content%}
+                            <!-- /# column -->
+                        </div>	
+						<div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4>标注表格</h4>
+							
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-responsive" id="pstable">
+									{% block main %}
+                                        <thead>
+                                            <tr>
+                                                <th style="font-weight:bold">#</th>
+                                                <th style="font-weight:bold">分句</th>
+                                                <th style="font-weight:bold">环节</th>
+                                                <th style="font-weight:bold">标签</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id = "rowcount">
+										{%for k,v in cutted.items%}
+                                            <tr id="{{k}}">
+                                                <th scope="row">{{k}}</th>
+                                                <td id="senttext{{k}}">{{v}}</td>																								   												
+												<td id = "sectioncount">
+													<select id='section{{k}}' name="section" >
+														<option value="">请选择环节大类</option>
+														{%for sec in sections%}
+															<option value="{{sec.0}}">{{sec.1}}</option>
+														{% endfor %}
+													</select>																										
+												</td>
+												<td id = "methodcount">
+													<select id="method{{k}}" name="method">
+														<option value="">请选择标签</option>
+													</select>
+												</td>
+                                        
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+										{% endblock main %}
+                                    </table>
+                                </div>
+							
+                            </div>
+							<button style="width:15%;margin:10px;float:right;" id="next" class="btn btn-primary btn-flat m-b-30 m-t-30">下一条</button>	
+							<button style="width:15%;margin:10px;float:right;" id="before"  class="btn btn-primary btn-flat m-b-30 m-t-30">上一条</button>
+							
+                        </div>
+					</div>
+
+                </div>
+                <!-- /# row -->     
+			</div>
+        </div>
+        <!-- /# container-fluid -->
+    </div>
+    <!-- /# main -->
+	
+    <script src="{% static 'js/lib/jquery.min.js'%}"></script>
+	<!-- jquery vendor -->
+	<script src="{% static 'js/lib/jquery.nanoscroller.min.js'%}"></script>
+	<!-- nano scroller -->
+	<script src="{% static 'js/lib/sidebar.js'%}"></script>
+	<!-- sidebar -->
+	<script src="{% static 'js/lib/bootstrap.min.js'%}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'js/lib/mmc-common.js'%}"></script>
+	<script src="{% static 'js/lib/mmc-chat.js'%}"></script>  
+
+	<script src="{% static 'js/lib/scrollable/holder.js'%}"></script><!-- scripit init-->
+    <script src="{% static 'js/lib/scrollable/jquery-asScrollbar.js'%}"></script><!-- scripit init-->
+    <script src="{% static 'js/lib/scrollable/jquery-asScrollable.min.js'%}"></script><!-- scripit init-->
+    <script src="{% static 'js/lib/scrollable/scrollable.init.js'%}"></script><!-- scripit init-->
+	
+    <script src="{% static 'js/scripts.js'%}"></script><!-- scripit init-->
+	
+	<script>
+	$(window).load((function(){
+	
+		function tablerefresh(){
+			var textid = document.getElementById("textid").innerText;
+			console.log("text id1:"+textid);
+			$.ajax({
+				async:false,
+				type:'POST',
+				url:"/tagnext/",
+				data:{'nowtextid':textid},
+				dataType: "text",
+				success:function(result){
+					//console.log(result);
+					/*
+					var div=document.getElementById("fraud");
+					var p=document.getElementById("fraudtext");
+					div.removeChild(p);
+					
+					var p1=document.getElementById("fatherp");
+					var span=document.getElementById("textid");
+					p1.removeChild(span);
+					var newfraud = "<p id=\"fraudtext\" style=\"font-size:20px\">" + msg.nowtext + "</p>";
+					var newspan = "<span id=\'textid\' class=\"badge\">" + msg.now_textid + "</span>";
+					console.log(msg.next_textid);
+					$("#fraud").append(newfraud);
+					$("#fatherp").append(newspan);
+					*/
+					
+					$("#maincontent").html(result);     
+				},
+				error: function(){  
+                    alert("false");  
+                }  
+			});
+		};
+		
+		$(document).on('click','#next',function(){
+			var textid = document.getElementById("textid").innerText;
+			console.log("text id2:"+textid);
+			slen = $("#sectioncount select").length;
+
+			for(var k = 0; k <slen ; k++){
+			    var sent_text = document.getElementById('senttext'+k).innerText;
+				console.log(sent_text)
+				
+				var sec_select = document.getElementById('section'+k);
+				var sec_index = sec_select.selectedIndex ;
+				var sec_options = sec_select.options[sec_index].value;
+				console.log(sec_options)
+				
+				var meth_select = document.getElementById('method'+k);
+				var index = meth_select.selectedIndex ;
+				var meth_options = meth_select.options[index].value;
+				console.log(meth_options)
+				
+				$.ajax({
+					async:false,
+					cache: false,
+					type:'POST',
+					url:"/savetag/",
+					data:{'nowtextid':textid,"sentid":k,"senttext":sent_text,"secid":sec_options,"methodid":meth_options},
+					dataType: "json",
+					success:function(data){
+						console.log(data);
+						
+					}
+				});
+			}
+			tablerefresh();
+			
+			var sections_list = document.getElementsByName("section");
+
+			var methods_list = document.getElementsByName("method");;
+			
+			$(sections_list).each(function(index,element){
+		
+			$(element).on('change', function(){　
+				console.log(element);
+				$(methods_list[index]).empty().append('<option value="">请选择标签</option>');;
+				var val=$(this).val();
+				console.log(val);
+				$.ajax({
+					type: "post",
+					url: "/ajaxmethod/",
+					dataType: "json",
+					data: {'pid':val},
+					success: function (data){
+						for (var i = 0; i < data.leng; i++) {
+							var pOption = "<option value='"+data.cid[i]+"'>"+data.methods[i]+"</option>";
+							$(methods_list[index]).append(pOption);
+						}
+					}
+				});
+			})
+		});
+			
+		});
+		
+		$(document).on('click','#before',function(){
+			var textid = document.getElementById("textid").innerText;
+			console.log("text id3:"+textid);
+			$.ajax({
+				async:false,
+				type:'POST',
+				url:"/tagbefore/",
+				data:{'nowtextid':textid},
+				dataType: "text",
+				success:function(result){
+					$("#maincontent").html(result);      //将id为pstable的标签的html替换为返回的data
+				},
+				error: function(){  
+                    alert("false");  
+                }  
+			});
+			
+			var sections_list = document.getElementsByName("section");
+			var methods_list = document.getElementsByName("method");
+			
+			$(sections_list).each(function(index,element){		
+			$(element).on('change', function(){　
+				console.log(element);
+				$(methods_list[index]).empty().append('<option value="">请选择标签</option>');
+				var val=$(this).val();
+				console.log(val);
+				$.ajax({
+					type: "post",
+					url: "/ajaxmethod/",
+					dataType: "json",
+					data: {'pid':val},
+					success: function (data){
+						for (var i = 0; i < data.leng; i++) {
+							var pOption = "<option value='"+data.cid[i]+"'>"+data.methods[i]+"</option>";
+							$(methods_list[index]).append(pOption);
+						}
+					}
+				});
+			})
+		});
+			
+		});
+		
+		var sections_list = document.getElementsByName("section");
+		var methods_list = document.getElementsByName("method");
+		
+		
+		$(sections_list).each(function(index,element){
+	
+			$(element).on('change', function(){　
+				console.log(element);
+				$(methods_list[index]).empty().append('<option value="">请选择标签</option>');
+				var val=$(this).val();
+				console.log(val);
+				$.ajax({
+					type: "post",
+					url: "/ajaxmethod/",
+					dataType: "json",
+					data: {'pid':val},
+					success: function (data){
+						for (var i = 0; i < data.leng; i++) {
+							var pOption = "<option value='"+data.cid[i]+"'>"+data.methods[i]+"</option>";
+							$(methods_list[index]).append(pOption);
+						}
+					}
+				});
+			})
+		});
+		
+		
+		}));
+
+
+    </script>
+	
+
+</body>
+
+</html>

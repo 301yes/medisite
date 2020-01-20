@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login', ##?
-    'tag.apps.TagConfig'
-    ,
 ]
 
 MIDDLEWARE = [
@@ -81,7 +79,7 @@ WSGI_APPLICATION = 'medisite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'medi.sqlite3',
+        'NAME': 'bd.sqlite3',
         'USER':'root',
         'PASSWORD':'123456',
         'HOST':'127.0.0.1',

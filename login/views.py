@@ -15,9 +15,10 @@ from . import models
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-#piter = 100
-#person = 2
+piter = 100 ##?
+person = 2  ##?
 #####
+
 def taghome(request):
     return redirect('/login/')
 
@@ -90,6 +91,7 @@ def login(request):
         password = request.POST.get('password')
         if username.strip() and password:#用户名和密码非空
             try:
+                print('username:',username)
                 user = models.User.objects.get(name=username)
             except :
                 message = '用户不存在！'
@@ -124,6 +126,7 @@ def register(request):
                 message = '用户名已经存在'
                 return render(request, 'page-register.html', {'message': message})
 
+            # 注册时即分配
             texts = models.FraudText.objects.all()
             text_len = texts.count()
             users = models.User.objects.all()

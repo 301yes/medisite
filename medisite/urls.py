@@ -19,44 +19,35 @@ Including another URLconf
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 # ]
-from django.urls import path
-from django.contrib import admin
-from django.urls import path
+
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 # import pymysql
+# from . import views
+from django.conf.urls import url
 from login import views
-from . import view
-
-# urlpatterns = [
-#     path('hello/', view.hello),
-# ]
-
-
-
-
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), ##
     path('',views.taghome),
-    path('login/',views.login),
     path('register/',views.register),
-    # path('index/',views.index),
-    # path('example1/',views.example1),
-    # path('taglogistic/',views.taglogistic),
-    # path('example2/',views.example2),
-    # path('example3/',views.example3),
-    # path('check/',views.check),
-    # path('check2/',views.check2),
-    # path('look/',views.look),
-    # path('modify/',views.modify),
-    # path('logout/', views.logout),
-    # path('tagging/', views.tagging),
-    # path('tagnext/', views.tagnext),
-    # path('tagbefore/', views.tagbefore),
-    # path('ajaxmethod/', views.ajaxmethod),
-    # path('savetag/', views.savetag),
-    # path('modifytag/', views.modifytag),
+    path('login/',views.login),
+    path('index/',views.index),
+    path('example1/',views.example1),
+    path('taglogistic/',views.taglogistic),
+    path('example2/',views.example2),
+    path('example3/',views.example3),
+    path('check/',views.check),
+    path('check2/',views.check2),
+    path('look/',views.look),
+    path('modify/',views.modify),
+    path('logout/', views.logout),
+    path('tagging/', views.tagging),
+    path('tagnext/', views.tagnext),
+    path('tagbefore/', views.tagbefore),
+    path('ajaxmethod/', views.ajaxmethod),
+    path('savetag/', views.savetag),
+    path('modifytag/', views.modifytag),
 ]

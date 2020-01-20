@@ -103,56 +103,64 @@
                             </div>
 						{% endblock content%}
                             <!-- /# column -->
-                        </div>	
-						<div class="col-lg-12">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>标注表格</h4>
-							
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-responsive" id="pstable">
-									{% block main %}
-                                        <thead>
-                                            <tr>
-                                                <th style="font-weight:bold">#</th>
-                                                <th style="font-weight:bold">分句</th>
-                                                <th style="font-weight:bold">动作</th>
-                                                <th style="font-weight:bold">标签</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id = "rowcount">
-										{%for k,v in cutted.items%}
-                                            <tr id="{{k}}">
-                                                <th scope="row">{{k}}</th>
-                                                <td id="senttext{{k}}">{{v}}</td>																								   												
-												<td id = "sectioncount">
-													<select id='section{{k}}' name="section" >
-														<option value="">请选择动作大类</option>
-														{%for sec in sections%}
-															<option value="{{sec.0}}">{{sec.1}}</option>
-														{% endfor %}
-													</select>																										
-												</td>
-												<td id = "methodcount">
-													<select id="method{{k}}" name="method">
-														<option value="">请选择标签</option>
-													</select>
-												</td>
-                                        
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-										{% endblock main %}
-                                    </table>
-                                </div>
-							
-                            </div>
-							<button style="width:15%;margin:10px;float:right;" id="next" class="btn btn-primary btn-flat m-b-30 m-t-30">下一条</button>	
-							<button style="width:15%;margin:10px;float:right;" id="before"  class="btn btn-primary btn-flat m-b-30 m-t-30">上一条</button>
-							
                         </div>
-					</div>
+                        <div style = "width:1080px;overflow-x:auto;background: #ffffff">
+                            {%for k,v,l in cutted%}
+                                <table class="table table-responsive" id="pstable">
+                                {% block main %}
+                                    <thead>
+                                        <tr>
+                                            {%for ii in l%}
+                                                {% if ii == 0 %}
+                                                    <th scope="row" >{{k}}</th>
+                                                {% else %}
+                                                    <th style="font-weight:bold">{{ii}}</th>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody id = "rowcount">
+                                        <tr id="{{k}}">
+                                            <td scope="row" >{{k}}</td>
+                                            {%for ss in v%}
+                                            <td id="senttext{{k}}">{{ss}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr id="{{k}}">
+                                            {%for ii in l%}
+                                                {% if ii == 0 %}
+                                                    <td id = "sectioncount">
+                                                        <select id='section{{k}}' name="section" >
+                                                            <option value="">请选择动作</option>
+                                                            {%for sec in sections%}
+                                                                <option value="{{sec.0}}">{{sec.1}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </td>
+                                                {% else %}
+                                                    <td id = "sectioncount">
+                                                        <select id='section{{k}}' name="section" >
+                                                            <option value="">请选择标签</option>
+                                                            {%for sec in sections%}
+                                                                <option value="{{sec.0}}">{{sec.1}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+
+                                    </tbody>
+                                    {% endblock main %}
+                                </table>
+                            {% endfor %}
+
+                        </div>
+                        <button style="width:15%;margin:10px;float:right;" id="next" class="btn btn-primary btn-flat m-b-30 m-t-30">下一条</button>
+                        {#<button style="width:15%;margin:10px;float:right;" id="commit"  class="btn btn-primary btn-flat m-b-30 m-t-30">提交</button>#}
+                        <button style="width:15%;margin:10px;float:right;" id="before"  class="btn btn-primary btn-flat m-b-30 m-t-30">上一条</button>
+
+                    </div>
 
                 </div>
                 <!-- /# row -->     

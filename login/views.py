@@ -232,6 +232,7 @@ def modify(request):
 
     nowtext = models.FraudText.objects.get(textid=nowtextid).text
     cutted_text = cutsent(nowtext)
+    cutted_text = [list(s) for s in cutted_text]
     cutlen = [i for i in range(len(cutted_text))]
     cutted = dict(zip(cutlen, cutted_text))
     return render(request,'modify.html', context={'nowtext':nowtext,'nowtext_id':nowtextid,'cutted':cutted,'sections':res})
@@ -254,12 +255,16 @@ def tagging(request):
     if not text_exist: #尚未开始标注
         userstart = models.User.objects.get(id=reviewerid).start
         now_id = userstart
+        print('now_id:',now_id)
         #now_textid = models.FraudText.objects.get(textid=now_id).textid
         nowtext = models.FraudText.objects.get(textid=now_id).text
         cutted_text = cutsent(nowtext)
         cutlen = [i for i in range(len(cutted_text))]
-        cutted = dict(zip(cutlen, cutted_text))
-        return render(request, 'tag.html', {'nowtext': nowtext, 'nowtext_id': now_id,'cutted':cutted,'sections':res})
+        len_pos = [len(cutted_text[i]) for i in range(len(cutted_text))]
+        lenpos = [range(i+1) for i in len_pos]
+        cutted = zip(cutlen, cutted_text, lenpos)
+        # cutted = dict(zip(cutlen, cutted_text))
+        return render(request, 'tag.html', {'nowtext': nowtext, 'nowtext_id': now_id,'cutted':cutted,'sections':res,'lenpos':lenpos})
     else: #已有标注记录
         #lasttext = list(models.TagText.objects.filter(reviewer=reviewerid,sentid=0).order_by('textid').values('textid'))
         #user_start = models.User.objects.get(id=reviewerid).start

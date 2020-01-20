@@ -33,7 +33,7 @@ class TagText(models.Model):
     def __str__(self):
         return self.text
 
-class FraudClass(models.Model):
+class FraudClass(models.Model): #下拉菜单的分类标签
     cid = models.IntegerField(verbose_name='动作序号')
     method = models.TextField(verbose_name='标签')
     pid = models.IntegerField(verbose_name='标签序号')

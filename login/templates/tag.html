@@ -117,7 +117,7 @@
                                             <tr>
                                                 <th style="font-weight:bold">#</th>
                                                 <th style="font-weight:bold">分句</th>
-                                                <th style="font-weight:bold">环节</th>
+                                                <th style="font-weight:bold">动作</th>
                                                 <th style="font-weight:bold">标签</th>
                                             </tr>
                                         </thead>
@@ -128,7 +128,7 @@
                                                 <td id="senttext{{k}}">{{v}}</td>																								   												
 												<td id = "sectioncount">
 													<select id='section{{k}}' name="section" >
-														<option value="">请选择环节大类</option>
+														<option value="">请选择动作大类</option>
 														{%for sec in sections%}
 															<option value="{{sec.0}}">{{sec.1}}</option>
 														{% endfor %}

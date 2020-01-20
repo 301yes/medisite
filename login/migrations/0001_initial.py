@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='FraudClass',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('cid', models.IntegerField(verbose_name='环节序号')),
+                ('cid', models.IntegerField(verbose_name='动作序号')),
                 ('method', models.TextField(verbose_name='标签')),
                 ('pid', models.IntegerField(verbose_name='标签序号')),
             ],
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('textid', models.CharField(max_length=64, verbose_name='投诉文本序号')),
                 ('sentid', models.CharField(max_length=64, verbose_name='分句序号')),
                 ('text', models.TextField(verbose_name='分句内容')),
-                ('secid', models.IntegerField(verbose_name='环节序号')),
+                ('secid', models.IntegerField(verbose_name='动作序号')),
                 ('tagid', models.IntegerField(verbose_name='标签序号')),
                 ('reviewer', models.IntegerField(verbose_name='用户id')),
                 ('savedate', models.DateTimeField(default=django.utils.timezone.now, verbose_name='保存日期')),

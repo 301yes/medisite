@@ -25,7 +25,7 @@ class TagText(models.Model):
     textid = models.IntegerField(verbose_name='投诉文本序号')
     sentid = models.IntegerField(verbose_name='分句序号')
     text = models.TextField(verbose_name='分句内容')
-    secid = models.IntegerField(verbose_name='环节序号')
+    secid = models.IntegerField(verbose_name='动作序号')
     tagid = models.IntegerField(verbose_name='标签序号')
     reviewer = models.IntegerField(verbose_name='用户id')
     savedate = models.DateTimeField('保存日期', default=timezone.now)
@@ -34,7 +34,7 @@ class TagText(models.Model):
         return self.text
 
 class FraudClass(models.Model):
-    cid = models.IntegerField(verbose_name='环节序号')
+    cid = models.IntegerField(verbose_name='动作序号')
     method = models.TextField(verbose_name='标签')
     pid = models.IntegerField(verbose_name='标签序号')
 
